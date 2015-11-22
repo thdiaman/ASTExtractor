@@ -384,7 +384,8 @@ are reserved.
 
 This Agreement is governed by the laws of the State of New York and the intellectual property laws of the
 United States of America. No party to this Agreement will bring a legal action under this Agreement more than
-one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting litigation.
+one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting
+litigation.
 ```
 
 Licence for JSON In Java
@@ -400,7 +401,8 @@ documentation files (the "Software"), to deal in the Software without restrictio
 the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
 and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions
+of the Software.
 
 The Software shall be used for Good, not Evil.
 
