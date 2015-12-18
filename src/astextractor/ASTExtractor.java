@@ -35,7 +35,7 @@ public class ASTExtractor {
 	 */
 	public static String parseString(String fileContents, String astFormat) {
 		String result = JavaASTParser.parse(fileContents);
-		if (astFormat == "JSON")
+		if (astFormat.equals("JSON"))
 			return XML.toJSONObject(result).toString(3);
 		else
 			return XMLHelpers.formatXML(result, 3);
@@ -60,7 +60,7 @@ public class ASTExtractor {
 	 */
 	public static String parseFile(String filename, String astFormat) {
 		String result = parseString(FileSystemHelpers.readFileToString(filename));
-		if (astFormat == "JSON")
+		if (astFormat.equals("JSON"))
 			return XML.toJSONObject(result).toString(3);
 		else
 			return XMLHelpers.formatXML(result, 3);
@@ -94,7 +94,7 @@ public class ASTExtractor {
 			results += "<file>\n<path>" + filePath + "</path>\n<ast>\n" + result + "</ast>\n</file>\n";
 		}
 		results += "</folder>\n";
-		if (astFormat == "JSON")
+		if (astFormat.equals("JSON"))
 			return XML.toJSONObject(results).toString(3);
 		else
 			return XMLHelpers.formatXML(results, 3);
