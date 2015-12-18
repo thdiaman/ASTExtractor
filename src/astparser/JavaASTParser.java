@@ -77,7 +77,7 @@ public class JavaASTParser {
 			// Do nothing
 		} else if (LEAF.contains(nodeType)) {
 			result.append(indent + "<" + nodeType + ">");
-			result.append(node.toString().trim().replace("<", "&lt;").replace(">", "&gt;"));
+			result.append(node.toString().trim().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"));
 			result.append("</" + nodeType + ">\n");
 		} else if (children.size() > 0) {
 			result.append(indent + "<" + nodeType + ">\n");
@@ -87,7 +87,7 @@ public class JavaASTParser {
 			result.append(indent + "</" + nodeType + ">\n");
 		} else {
 			result.append(indent + "<" + nodeType + ">");
-			result.append(node.toString().replace("<", "&lt;").replace(">", "&gt;"));
+			result.append(node.toString().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"));
 			result.append("</" + nodeType + ">\n");
 		}
 	}
