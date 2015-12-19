@@ -19,7 +19,6 @@ public class PythonBinder {
 	 * The base 64 format is used to send the messages.
 	 * 
 	 * @param args unused parameter
-	 * @throws IOException
 	 */
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
