@@ -50,7 +50,6 @@
 							<mainClass>astextractor.MainApp</mainClass>
 						</manifest>
 					</archive>
-
 				</configuration>
 				<executions>
 					<execution>
@@ -59,6 +58,9 @@
 						<goals>
 							<goal>single</goal>
 						</goals>
+						<configuration>
+							<appendAssemblyId>false</appendAssemblyId>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
