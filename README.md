@@ -3,7 +3,7 @@ ASTExtractor: Abstract Syntax Tree Extractor for Java Source Code
 ASTExtractor is an Abstract Syntax Tree (AST) extractor for Java source code, based
 on the Eclipse compiler. The tool functions as a wrapper of the Eclipse compiler and
 allows exporting the AST of source code files or projects in XML and JSON formats.
-The tools has a command line interface and can also be used as a library.
+The tool has a command line interface and can also be used as a library.
 The documentation is available at [http://thdiaman.github.io/ASTExtractor/](http://thdiaman.github.io/ASTExtractor/)
 
 Executing in Command Line mode
