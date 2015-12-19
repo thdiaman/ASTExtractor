@@ -2,7 +2,9 @@ bin/
 dist/
 target/
 .project
-.pydevproject
 .classpath
 .settings
 *.class
+.pydevproject
+__pycache__
+*.pyc
