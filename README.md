@@ -61,8 +61,9 @@ After that, you can use it as follows:
 			"}\n"
 	)</code></pre>
 If JSON is required as the output representation then use these functions with a second string
-argument that can be either <code>"XML"</code> or <code>"JSON"</code>. Note that after using
-the library, you have to close the ASTExtractor object using function <code>close</code>, i.e.:<pre><code>ast_extractor.close()</code></pre>
+argument that can be either <code>"XML"</code> or <code>"JSON"</code>.
+
+Note that after using the library, you have to close the ASTExtractor object using function <code>close</code>, i.e.:<pre><code>ast_extractor.close()</code></pre>
 
 Controlling the output
 ----------------------
