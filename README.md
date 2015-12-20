@@ -40,7 +40,7 @@ Using in Python
 ---------------
 ASTExtractor also has python bindings. Using the python wrapper is simple. At first, the library
 has to be imported and the ASTExtractor object has to be initialized given the path to the jar
-of the library:<pre><code>ast_extractor = ASTExtractor("path/to/ASTExtractor.jar")</code></pre>.
+of the library:<pre><code>ast_extractor = ASTExtractor("path/to/ASTExtractor.jar")</code></pre>
 After that, you can use it as follows:
 - For folders containing java files:<pre><code>ast = ast_extractor.parse_folder("path/to/folder/");</code></pre>
 - For java files:<pre><code>ast = ast_extractor.parse_file("path/to/file.java");</code></pre>
@@ -61,7 +61,8 @@ After that, you can use it as follows:
 			"}\n"
 	)</code></pre>
 If JSON is required as the output representation then use these functions with a second string
-argument that can be either <code>"XML"</code> or <code>"JSON"</code>.
+argument that can be either <code>"XML"</code> or <code>"JSON"</code>. Note that after using
+the library, you have to close the ASTExtractor object using function <code>close</code>, i.e.:<pre><code>ast_extractor.close()</code></pre>
 
 Controlling the output
 ----------------------
