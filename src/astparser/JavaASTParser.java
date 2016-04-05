@@ -31,7 +31,8 @@ public class JavaASTParser {
 	private static HashSet<String> OMIT = new HashSet<String>();
 
 	static {
-		for (String rule : ParseHelpers.parseProperties("ASTExtractor.properties")) {
+		for (String rule : ParseHelpers
+				.parseProperties(ParseHelpers.getPropertiesFileLocation("ASTExtractor.properties"))) {
 			String[] srule = rule.split("=");
 			if (srule[1].equals("LEAF"))
 				LEAF.add(srule[0]);

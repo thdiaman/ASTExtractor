@@ -1,8 +1,12 @@
 package helpers;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+
+import astparser.JavaASTParser;
 
 /**
  * Helper functions for parsing arguments or properties files.
@@ -59,6 +63,26 @@ public class ParseHelpers {
 		project = project.trim();
 		file = file.trim();
 		return new String[] { project.trim(), file.trim(), repr.trim().toUpperCase() };
+	}
+
+	/**
+	 * Returns the location of the properties file.
+	 * 
+	 * @param filename the filename of the properties file.
+	 * @return the absolute path of the properties file.
+	 */
+	public static String getPropertiesFileLocation(String filename) {
+		URI propertiesFile = null;
+		try {
+			propertiesFile = JavaASTParser.class.getProtectionDomain().getCodeSource().getLocation().toURI()
+					.resolve(filename);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		if (propertiesFile != null && new File(propertiesFile.getPath()).exists())
+			return propertiesFile.getPath();
+		else
+			return filename;
 	}
 
 	/**
