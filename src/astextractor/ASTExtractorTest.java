@@ -17,19 +17,19 @@ public class ASTExtractorTest {
 	public static void main(String[] args) {
 		// @formatter:off
 		String ast = ASTExtractor.parseString(""
-		         + "import org.myclassimports;"
+		         + "import org.myclassimports;\n"
 		         + ""
-		         + "public class MyClass {"
-		         + "    private int myvar;"
+		         + "public class MyClass {\n"
+		         + "    private int myvar;\n"
+		         + "\n"
+		         + "    public MyClass(int myvar) {\n"
+		         + "        this.myvar = myvar;\n"
+		         + "    }\n"
 		         + ""
-		         + "    public MyClass(int myvar) {"
-		         + "        this.myvar = myvar;"
-		         + "    }"
-		         + ""
-		         + "    public void getMyvar() {"
-		         + "        return myvar;"
-		         + "    }"
-		         + "}"
+		         + "    public void getMyvar() {\n"
+		         + "        return myvar;\n"
+		         + "    }\n"
+		         + "}\n"
 		         );
 		// @formatter:on
 		System.out.println(ast);

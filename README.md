@@ -19,19 +19,19 @@ Import the library in your code. Then, you can use it as follows:
 - For java files:<pre><code>String ast = ASTExtractor.parseFile("path/to/file.java");</code></pre>
 - For contents of java files (i.e. strings):
 <pre><code>String ast = ASTExtractor.parseString(""
-			 + "import org.myclassimports;"
-			 + ""
-			 + "public class MyClass {"
-			 + "	private int myvar;"
-			 + ""
-			 + "	public MyClass(int myvar) {"
-			 + "		this.myvar = myvar;"
-			 + "	}"
-			 + ""
-			 + "	public void getMyvar() {"
-			 + "		return myvar;"
-			 + "	}"
-			 + "}"
+			 + "import org.myclassimports;\n"
+			 + "\n"
+			 + "public class MyClass {\n"
+			 + "	private int myvar;\n"
+			 + "\n"
+			 + "	public MyClass(int myvar) {\n"
+			 + "		this.myvar = myvar;\n"
+			 + "	}\n"
+			 + "\n"
+			 + "	public void getMyvar() {\n"
+			 + "		return myvar;\n"
+			 + "	}\n"
+			 + "}\n"
 			 );</code></pre>
 If JSON is required as the output representation then use these functions with a second string
 argument that can be either <code>"XML"</code> or <code>"JSON"</code>.
