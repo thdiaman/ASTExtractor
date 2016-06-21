@@ -2,7 +2,6 @@ package astparser;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.jdt.core.dom.AST;
@@ -11,35 +10,14 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.StructuralPropertyDescriptor;
 
-import helpers.ParseHelpers;
+import astextractor.ASTExtractorProperties;
 
 /**
- * Handles the parsing of java files and the extraction of their Abstract Syntax Trees (ASTs)
+ * Handles the parsing of java files and the extraction of their Abstract Syntax Trees (ASTs).
  * 
  * @author themis
  */
 public class JavaASTParser {
-
-	/**
-	 * The nodes of the AST that should be printed as they are.
-	 */
-	private static HashSet<String> LEAF = new HashSet<String>();
-
-	/**
-	 * The nodes of the AST that should be omitted.
-	 */
-	private static HashSet<String> OMIT = new HashSet<String>();
-
-	static {
-		for (String rule : ParseHelpers
-				.parseProperties(ParseHelpers.getPropertiesFileLocation("ASTExtractor.properties"))) {
-			String[] srule = rule.split("=");
-			if (srule[1].equals("LEAF"))
-				LEAF.add(srule[0]);
-			else if (srule[1].equals("OMIT"))
-				OMIT.add(srule[0]);
-		}
-	}
 
 	/**
 	 * Retrieves the children of an ASTNode.
@@ -74,9 +52,9 @@ public class JavaASTParser {
 	private static void visitNode(StringBuffer result, String indent, ASTNode node) {
 		ArrayList<ASTNode> children = getChildren(node);
 		String nodeType = ASTNode.nodeClassForType(node.getNodeType()).getSimpleName();
-		if (OMIT.contains(nodeType)) {
+		if (ASTExtractorProperties.OMIT.contains(nodeType)) {
 			// Do nothing
-		} else if (LEAF.contains(nodeType)) {
+		} else if (ASTExtractorProperties.LEAF.contains(nodeType)) {
 			result.append(indent + "<" + nodeType + ">");
 			result.append(node.toString().trim().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"));
 			result.append("</" + nodeType + ">\n");

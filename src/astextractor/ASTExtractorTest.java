@@ -15,6 +15,8 @@ public class ASTExtractorTest {
 	 * @param args unused parameter.
 	 */
 	public static void main(String[] args) {
+		ASTExtractorProperties.setProperties("ASTExtractor.properties");
+
 		// @formatter:off
 		String ast = ASTExtractor.parseString(""
 		         + "import org.myclassimports;\n"

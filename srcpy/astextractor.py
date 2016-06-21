@@ -9,13 +9,14 @@ class _ASTExtractor(object):
 	and opening pipes to the standard input and standard output so that messages can be sent and received.
 	Instead of using this class, it is highly recommended to use the abstracted ASTExtractor class.
 	"""
-	def __init__(self, path_to_ASTExtractor_jar):
+	def __init__(self, path_to_ASTExtractor_jar, path_to_ASTExtractor_properties):
 		"""
 		Initializes this inner extractor.
 		
 		:param path_to_ASTExtractor_jar: the path to the ASTExtractor jar.
+		:param path_to_ASTExtractor_properties: the path to the ASTExtractor properties file.
 		"""
-		self.cmd = ['java', '-cp', path_to_ASTExtractor_jar, 'astextractor.PythonBinder']
+		self.cmd = ['java', '-cp', path_to_ASTExtractor_jar, 'astextractor.PythonBinder', path_to_ASTExtractor_properties]
 		self.proc = subprocess.Popen(self.cmd, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 		self.nummessages = 0
 		line = self.send_message("START_OF_TRANSMISSION")
@@ -75,13 +76,14 @@ class ASTExtractor(_ASTExtractor):
 	"""
 	Class used as a python binding to the ASTExtractor library. It contains functions for parsing java code to AST.
 	"""
-	def __init__(self, path_to_ASTExtractor_jar):
+	def __init__(self, path_to_ASTExtractor_jar, path_to_ASTExtractor_properties):
 		"""
 		Initializes this AST Extractor.
 		
 		:param path_to_ASTExtractor_jar: the path to the ASTExtractor jar
+		:param path_to_ASTExtractor_properties: the path to the ASTExtractor properties file.
 		"""
-		super(ASTExtractor, self).__init__(path_to_ASTExtractor_jar)
+		super(ASTExtractor, self).__init__(path_to_ASTExtractor_jar, path_to_ASTExtractor_properties)
 
 	def parse_string(self, file_contents, representation="XML"):
 		"""

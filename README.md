@@ -8,13 +8,15 @@ The documentation is available at [http://thdiaman.github.io/ASTExtractor/](http
 
 Executing in Command Line mode
 ------------------------------
-Execute as: <pre><code>java -jar ASTExtractor.jar -project="path/to/project" -repr=XML|JSON</code></pre>
-for projects, or as: <pre><code>java -jar ASTExtractor.jar -file="path/to/file" -repr=XML|JSON</code></pre>
-for java files, where <code>repr</code> allows selecting the representation of the tree (default is XML)
+Execute as: <pre><code>java -jar ASTExtractor.jar -project="path/to/project" -properties="path/to/propertiesfile" -repr=XML|JSON</code></pre>
+for projects, or as: <pre><code>java -jar ASTExtractor.jar -file="path/to/file" -properties="path/to/propertiesfile" -repr=XML|JSON</code></pre>
+for java files, where <code>-properties</code> allows setting the location of the properties file (default is no properties so all syntax tree 
+nodes are returned) and <code>-repr</code> allows selecting the representation of the tree (default is XML).
 
 Using as a library
 ------------------
-Import the library in your code. Then, you can use it as follows:
+Import the library in your code. Set a location for the properties file using <pre><code>ASTExtractorProperties.setProperties("ASTExtractor.properties");<code><pre>.
+Then, you can use it as follows:
 - For folders containing java files:<pre><code>String ast = ASTExtractor.parseFolder("path/to/folder/");</code></pre>
 - For java files:<pre><code>String ast = ASTExtractor.parseFile("path/to/file.java");</code></pre>
 - For contents of java files (i.e. strings):
@@ -40,7 +42,8 @@ Using in Python
 ---------------
 ASTExtractor also has python bindings. Using the python wrapper is simple. At first, the library
 has to be imported and the ASTExtractor object has to be initialized given the path to the jar
-of the library:<pre><code>ast_extractor = ASTExtractor("path/to/ASTExtractor.jar")</code></pre>
+of the library and the path to the properties file of the library:
+<pre><code>ast_extractor = ASTExtractor("path/to/ASTExtractor.jar", "path/to/ASTExtractor.properties")</code></pre>
 After that, you can use it as follows:
 - For folders containing java files:<pre><code>ast = ast_extractor.parse_folder("path/to/folder/");</code></pre>
 - For java files:<pre><code>ast = ast_extractor.parse_file("path/to/file.java");</code></pre>
@@ -69,9 +72,8 @@ Controlling the output
 ----------------------
 An Abstract Syntax Tree can be very complex, including details for every identifier of the code.
 In ASTExtractor, the complexity of the tree can be controlled using the ASTExtractor.properties
-file that must reside in the same folder as the ASTExtractor.jar. In this file, the user can
-select the nodes that should not appear in the final tree (<code>OMIT</code>) and the nodes that
-should not be analyzed further, i.e. that should be forced to be leaf nodes (<code>LEAF</code>)
+file. In this file, the user can select the nodes that should not appear in the final tree (<code>OMIT</code>)
+and the nodes that should not be analyzed further, i.e. that should be forced to be leaf nodes (<code>LEAF</code>)
 The default options are shown in the following example ASTExtractor.properties file:
 <pre><code>LEAF = PackageDeclaration, ImportDeclaration, ParameterizedType, ArrayType, VariableDeclarationFragment
 OMIT = Javadoc, Block</code></pre>

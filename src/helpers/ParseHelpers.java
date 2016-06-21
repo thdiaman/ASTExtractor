@@ -1,12 +1,8 @@
 package helpers;
 
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-
-import astparser.JavaASTParser;
 
 /**
  * Helper functions for parsing arguments or properties files.
@@ -34,55 +30,45 @@ public class ParseHelpers {
 		}
 		boolean sproject = false;
 		boolean sfile = false;
+		boolean sproperties = false;
 		boolean srepr = false;
 		String project = "";
 		String file = "";
+		String properties = "";
 		String repr = "";
 		for (String c : col) {
 			if (c.startsWith("-project")) {
 				sproject = true;
 				sfile = false;
+				sproperties = false;
 				srepr = false;
 			} else if (c.startsWith("-file")) {
 				sproject = false;
 				sfile = true;
+				sproperties = false;
+				srepr = false;
+			} else if (c.startsWith("-properties")) {
+				sproject = false;
+				sfile = false;
+				sproperties = true;
 				srepr = false;
 			} else if (c.startsWith("-repr")) {
 				sproject = false;
 				sfile = false;
+				sproperties = false;
 				srepr = true;
 			} else {
 				if (sproject)
 					project += c + " ";
 				else if (sfile)
 					file += c + " ";
+				else if (sproperties)
+					properties += c + " ";
 				else if (srepr)
 					repr += c + " ";
 			}
 		}
-		project = project.trim();
-		file = file.trim();
-		return new String[] { project.trim(), file.trim(), repr.trim().toUpperCase() };
-	}
-
-	/**
-	 * Returns the location of the properties file.
-	 * 
-	 * @param filename the filename of the properties file.
-	 * @return the absolute path of the properties file.
-	 */
-	public static String getPropertiesFileLocation(String filename) {
-		URI propertiesFile = null;
-		try {
-			propertiesFile = JavaASTParser.class.getProtectionDomain().getCodeSource().getLocation().toURI()
-					.resolve(filename);
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		if (propertiesFile != null && new File(propertiesFile.getPath()).exists())
-			return propertiesFile.getPath();
-		else
-			return filename;
+		return new String[] { project.trim(), file.trim(), properties.trim(), repr.trim().toUpperCase() };
 	}
 
 	/**

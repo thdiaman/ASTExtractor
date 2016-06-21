@@ -14,9 +14,13 @@ public class MainApp {
 	 */
 	private static void printHelpMessage() {
 		System.out.println("ASTExtractor: Abstract Syntax Tree Extractor for Java Source Code\n");
-		System.out.println("Run as:\n java -jar ASTExtractor.jar -project=\"path/to/project\" -repr=XML|JSON");
-		System.out.println("Or as:\n java -jar ASTExtractor.jar -file=\"path/to/file\" -repr=XML|JSON");
-		System.out.println("where repr allows selecting the representation of the tree (default is XML)");
+		System.out.println("Run as:\n java -jar ASTExtractor.jar -project=\"path/to/project\""
+				+ " -properties=\"path/to/propertiesfile\" -repr=XML|JSON");
+		System.out.println("Or as:\n java -jar ASTExtractor.jar -file=\"path/to/file\""
+				+ " -properties=\"path/to/propertiesfile\" -repr=XML|JSON");
+		System.out.println("where -properties allows setting the location of the properties file"
+				+ " (default is no properties so all syntax tree nodes are returned)");
+		System.out.println("and -repr allows selecting the representation of the tree (default is XML)");
 	}
 
 	/**
@@ -29,13 +33,15 @@ public class MainApp {
 			String[] arguments = ParseHelpers.parseArgs(args);
 			String project = arguments[0];
 			String file = arguments[1];
+			String properties = arguments[2];
 			String repr = "XML";
 			if (project.length() > 0 ^ file.length() > 0) {
-				if (arguments[2].length() > 0 && !(arguments[2].equals("JSON") || arguments[2].equals("XML")))
+				if (arguments[3].length() > 0 && !(arguments[3].equals("JSON") || arguments[3].equals("XML")))
 					printHelpMessage();
 				else {
-					if (arguments[2].equals("JSON") || arguments[2].equals("XML"))
-						repr = arguments[2];
+					ASTExtractorProperties.setProperties(properties);
+					if (arguments[3].equals("JSON") || arguments[3].equals("XML"))
+						repr = arguments[3];
 					String result = "";
 					if (project.length() > 0)
 						result = ASTExtractor.parseFolder(project, repr);
