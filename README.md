@@ -15,7 +15,7 @@ nodes are returned) and <code>-repr</code> allows selecting the representation o
 
 Using as a library
 ------------------
-Import the library in your code. Set a location for the properties file using <pre><code>ASTExtractorProperties.setProperties("ASTExtractor.properties");<code><pre>.
+Import the library in your code. Set a location for the properties file using <pre><code>ASTExtractorProperties.setProperties("ASTExtractor.properties");</code></pre>.
 Then, you can use it as follows:
 - For folders containing java files:<pre><code>String ast = ASTExtractor.parseFolder("path/to/folder/");</code></pre>
 - For java files:<pre><code>String ast = ASTExtractor.parseFile("path/to/file.java");</code></pre>
