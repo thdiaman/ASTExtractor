@@ -1,5 +1,6 @@
 package astextractor;
 
+import astextractor.ASTExtractorProperties;
 import astextractor.ASTExtractor;
 
 /**
