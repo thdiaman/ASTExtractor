@@ -21,7 +21,8 @@ public class FileSystemHelpers {
 	public static String readFileToString(String filename) {
 		try {
 			Scanner scanner = new Scanner(new File(filename));
-			String text = scanner.useDelimiter("\\A").next();
+			scanner.useDelimiter("\\A");
+			String text = scanner.hasNext() ? scanner.next() : "";
 			scanner.close();
 			return text;
 		} catch (FileNotFoundException e) {
