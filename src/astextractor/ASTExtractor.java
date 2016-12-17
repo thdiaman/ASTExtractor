@@ -86,17 +86,17 @@ public class ASTExtractor {
 	public static String parseFolder(String folderName, String astFormat) {
 		String folderAbsolutePath = new File(folderName).getAbsolutePath();
 		ArrayList<File> files = FileSystemHelpers.getJavaFilesOfFolderRecursively(folderName);
-		String results = "<folder>\n";
+		StringBuilder results = new StringBuilder("<folder>\n");
 		for (File file : files) {
 			String fileAbsolutePath = file.getAbsolutePath();
 			String filePath = FileSystemHelpers.getRelativePath(folderAbsolutePath, fileAbsolutePath);
 			String result = parseFile(fileAbsolutePath);
-			results += "<file>\n<path>" + filePath + "</path>\n<ast>\n" + result + "</ast>\n</file>\n";
+			results.append("<file>\n<path>" + filePath + "</path>\n<ast>\n" + result + "</ast>\n</file>\n");
 		}
-		results += "</folder>\n";
+		results.append("</folder>\n");
 		if (astFormat.equals("JSON"))
-			return XML.toJSONObject(results).toString(3);
+			return XML.toJSONObject(results.toString()).toString(3);
 		else
-			return XMLHelpers.formatXML(results, 3);
+			return XMLHelpers.formatXML(results.toString(), 3);
 	}
 }
