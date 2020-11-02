@@ -2,7 +2,7 @@ from astextractor import ASTExtractor
 
 if __name__ == '__main__':
 	'''Used as a test for the python bindings'''
-	ast_extractor = ASTExtractor("../target/ASTExtractor-0.4.jar", "../ASTExtractor.properties")
+	ast_extractor = ASTExtractor("../target/ASTExtractor-0.5.jar", "../ASTExtractor.properties")
 	ast = ast_extractor.parse_string(
 			"import org.myclassimports;\n" + 
 			"\n" + 
