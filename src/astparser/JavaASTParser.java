@@ -90,7 +90,7 @@ public class JavaASTParser {
 	 * @return an XML string representation of the AST of the java file contents.
 	 */
 	public static String parse(String str) {
-		ASTParser parser = ASTParser.newParser(AST.JLS8);
+		ASTParser parser = ASTParser.newParser(AST.JLS14);
 		parser.setSource(str.toCharArray());
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
